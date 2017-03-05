@@ -16,6 +16,7 @@ public class NoteBean {
     public NoteBean() {
     }
 
+    //Konstruktor
     public NoteBean(String strFileName, String strStatusImportance, String strNote) {
         setFileName(strFileName);
         setStatusImportance(strStatusImportance);

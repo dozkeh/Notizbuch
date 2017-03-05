@@ -20,7 +20,8 @@ public class MainActivityOnClickListener implements View.OnClickListener {
     private static MainActivity mainActivity = null;
 
     //EditText
-    // TODO Warum statisch????
+    // TODO Warum statisch???? -> Für jedes Objekt dieser Klasse sollten die gleichen Widgets gelten
+    // die Variable wird im Klassenobjekt gespeichert
     private static EditText txtFile = null;
     private static EditText txtNote = null;
 
@@ -108,9 +109,12 @@ public class MainActivityOnClickListener implements View.OnClickListener {
             String strInputStatusImportance = "";
             String strInputNote = "";
 
+            //Daten aus der Oberfäche einsammeln
             strInputFileName = txtFile.getText().toString();
             strInputStatusImportance = getStatusImportance();
             strInputNote = txtNote.getText().toString();
+
+            //Überprüfung, ob eine Datei mit dem Namen bereits existiert
             if (!MyFileHandler.getInstance().fileNameAlreadyExists(strInputFileName)) {
                 NoteBean noteBean = new NoteBean(strInputFileName, strInputStatusImportance, strInputNote);
                 MyFileHandler.getInstance().getAllNotes().add(noteBean);
