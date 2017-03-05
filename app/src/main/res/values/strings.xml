@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Notizbuch</string>
+    <string name="cmdSave">Notiz speichern</string>
+    <string name="cmdShow">Alle Notizen zeigen</string>
+    <string name="cmdDelete">Alle Notizen löschen</string>
+    <string name="radioVeryImportant">Sehr wichtig</string>
+    <string name="radioImportant">Wichtig</string>
+    <string name="radioNotImportant">Nicht Wichtig</string>
+    <string name="inputTextHint">Notiz eingeben</string>
+    <string name="textFileHint">Dateiname eingeben</string>
+</resources>
