@@ -54,4 +54,7 @@ public class MyFileHandler {
         }
         return fileExists;
     }
+
+    public void setCurrentDetailNoteBean(int index) {
+    }
 }

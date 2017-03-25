@@ -5,11 +5,12 @@ import android.os.Bundle;
 
 import com.example.rominakehl.notizbuch.adapter.ListViewActivityAdapter;
 import com.example.rominakehl.notizbuch.controller.MyFileHandler;
+import com.example.rominakehl.notizbuch.listener.ListViewOnItemOnClickListener;
 
 public class ListViewActivity extends ListActivity {
 
     private static ListViewActivityAdapter listViewActivityAdpater = null;
-    /*private static ListViewOnItemOnClickListener listViewOnItemOnClickListener = null;*/
+    private static ListViewOnItemOnClickListener listViewOnItemOnClickListener = null;
 
     @Override
     protected void onResume()
@@ -29,8 +30,8 @@ public class ListViewActivity extends ListActivity {
         if((MyFileHandler.getInstance().getAllNotes()!=null) && (!MyFileHandler.getInstance().getAllNotes().isEmpty()))
         {
             listViewActivityAdpater = new ListViewActivityAdapter(this);
-            /*listViewOnItemOnClickListener = new ListViewOnItemOnClickListener();
-            getListView().setOnItemClickListener(listViewOnItemOnClickListener);*/
+            listViewOnItemOnClickListener = new ListViewOnItemOnClickListener();
+            getListView().setOnItemClickListener(listViewOnItemOnClickListener);
             setListAdapter(listViewActivityAdpater);
         }
     }
