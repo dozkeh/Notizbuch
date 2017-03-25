@@ -1,10 +1,12 @@
 package com.example.rominakehl.notizbuch.listener;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.example.rominakehl.notizbuch.ListViewActivity;
 import com.example.rominakehl.notizbuch.MainActivity;
 import com.example.rominakehl.notizbuch.R;
 import com.example.rominakehl.notizbuch.beans.NoteBean;
@@ -47,7 +49,8 @@ public class MainActivityOnClickListener implements View.OnClickListener {
                 break;
 
             case R.id.cmdShow:
-                //TODO Alle Notizen anzeigen
+                Intent intShow = new Intent(mainActivity, ListViewActivity.class);
+                mainActivity.startActivity(intShow);
                 break;
 
             case R.id.cmdSave:
