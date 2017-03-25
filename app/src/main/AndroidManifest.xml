@@ -18,6 +18,8 @@
 
         <activity android:name=".ListViewActivity"></activity>
 
+        <activity android:name=".DetailViewActivity"></activity>
+
     </application>
 
 </manifest>
