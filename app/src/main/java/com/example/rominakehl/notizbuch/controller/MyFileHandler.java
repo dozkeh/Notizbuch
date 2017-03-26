@@ -56,5 +56,10 @@ public class MyFileHandler {
     }
 
     public void setCurrentDetailNoteBean(int index) {
+        this.currentDetailNoteBean = this.allNotes.get(index);
+    }
+
+    public NoteBean getCurrentDetailNoteBean() {
+        return this.currentDetailNoteBean;
     }
 }
