@@ -18,6 +18,7 @@ import com.example.rominakehl.notizbuch.controller.MyFileHandler;
 import com.example.rominakehl.notizbuch.listener.MainActivityOnClickListener;
 import com.example.rominakehl.notizbuch.services.FileService;
 
+import java.io.FileNotFoundException;
 import java.util.logging.FileHandler;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
             fileService = binder.getFileService();
 
-            /*try
+            try
             {
                 MyFileHandler.getInstance().setAllNotes(fileService.loadAllFilesFromDevice());
-            }*/
+            }
+            catch (Exception e)
+            {
+                    e.printStackTrace();
+            }
 
         }
 
