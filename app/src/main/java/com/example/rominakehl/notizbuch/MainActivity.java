@@ -1,6 +1,8 @@
 package com.example.rominakehl.notizbuch;
 
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     };
 
+    public FileService getFileService(){return this.getFileService();}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,5 +102,47 @@ public class MainActivity extends AppCompatActivity {
         cmdSave.setOnClickListener(mainAcitivityOnClickListener);
 
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        bindConnectionAndStartFileService();
+
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        unbindConnectionAndKillFileService();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        unbindConnectionAndKillFileService();
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        unbindConnectionAndKillFileService();
+    }
+
+
+    private void unbindConnectionAndKillFileService(){
+        if(fileService != null){
+            fileService.stopSelf();
+
+            unbindService(connection);
+
+            fileService=null;
+        }
+    }
+
+
+    private void bindConnectionAndStartFileService(){
+        Intent intent = new Intent(this, FileService.class);
+        bindService(intent,connection, Context.BIND_AUTO_CREATE);
     }
 }
