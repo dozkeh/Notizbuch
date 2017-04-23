@@ -15,11 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListViewActivity" />
+        <activity android:name=".DetailViewActivity" />
 
-        <activity android:name=".ListViewActivity"></activity>
-
-        <activity android:name=".DetailViewActivity"></activity>
-
+        <service
+            android:name=".services.FileService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -1,5 +1,8 @@
 package com.example.rominakehl.notizbuch;
 
+import android.content.ComponentName;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +12,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.rominakehl.notizbuch.R;
+import com.example.rominakehl.notizbuch.controller.MyFileHandler;
 import com.example.rominakehl.notizbuch.listener.MainActivityOnClickListener;
+import com.example.rominakehl.notizbuch.services.FileService;
+
+import java.util.logging.FileHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +39,32 @@ public class MainActivity extends AppCompatActivity {
 
     //Listener
     private View.OnClickListener mainAcitivityOnClickListener = null;
+
+    //Service
+    private static FileService fileService = null;
+
+    private ServiceConnection connection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+
+            FileService.FileServiceBinder binder = (FileService.FileServiceBinder) service;
+
+            fileService = binder.getFileService();
+
+            /*try
+            {
+                MyFileHandler.getInstance().setAllNotes(fileService.loadAllFilesFromDevice());
+            }*/
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            fileService = null;
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Generierung Listener
         this.mainAcitivityOnClickListener = new MainActivityOnClickListener();
+
 
         //Adding Listeners
         cmdShow.setOnClickListener(mainAcitivityOnClickListener);
