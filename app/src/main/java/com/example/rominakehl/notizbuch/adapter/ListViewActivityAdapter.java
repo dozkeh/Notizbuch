@@ -48,21 +48,18 @@ public class ListViewActivityAdapter extends BaseAdapter {
     @Override
     public View getView(int index, View currentView, ViewGroup parent)
     {
-        if(currentView == null)
-        {
-            NoteBean noteBean = (NoteBean) getItem(index);
+        NoteBean noteBean = (NoteBean) getItem(index);
+        if(currentView == null) {
             currentView = layoutInflater.inflate(R.layout.list_view_item_layout, parent, false);
-
-            ListViewItemWrapper listViewItemWrapper = new ListViewItemWrapper();
-
-            listViewItemWrapper.setTxtFilename((TextView) currentView.findViewById(R.id.txtFilename));
-            listViewItemWrapper.setTxtImportance((TextView) currentView.findViewById(R.id.txtImportance));
-
-            listViewItemWrapper.getTxtFilename().setText(noteBean.getPureFileName());
-            listViewItemWrapper.getTxtImportance().setText(noteBean.getStatusImportance());
-
-
         }
+        ListViewItemWrapper listViewItemWrapper = new ListViewItemWrapper();
+
+        listViewItemWrapper.setTxtFilename((TextView) currentView.findViewById(R.id.txtFilename));
+        listViewItemWrapper.setTxtImportance((TextView) currentView.findViewById(R.id.txtImportance));
+
+        listViewItemWrapper.getTxtFilename().setText(noteBean.getPureFileName());
+        listViewItemWrapper.getTxtImportance().setText(noteBean.getStatusImportance());
+
 
         return currentView;
     }

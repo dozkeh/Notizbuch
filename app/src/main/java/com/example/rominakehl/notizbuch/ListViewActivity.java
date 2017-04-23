@@ -33,6 +33,8 @@ public class ListViewActivity extends ListActivity {
             listViewOnItemOnClickListener = new ListViewOnItemOnClickListener();
             getListView().setOnItemClickListener(listViewOnItemOnClickListener);
             setListAdapter(listViewActivityAdpater);
+            //TODO Layout mit Container und Überschrift
+            //TODO Serialisierbarkeit
         }
     }
 }
