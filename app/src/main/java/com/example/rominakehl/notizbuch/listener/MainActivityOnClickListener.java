@@ -89,17 +89,9 @@ public class MainActivityOnClickListener implements View.OnClickListener {
     private String getStatusImportance()
     {
         String strStatusImportance = "";
-
-        if(radioImportant.isChecked()){
-            strStatusImportance = radioImportant.getText().toString();
-        }
-        if(radioVeryImportant.isChecked()){
-            strStatusImportance = radioVeryImportant.getText().toString();
-        }
-        if(radioNotImportant.isChecked()){
-            strStatusImportance = radioNotImportant.getText().toString();
-        }
-
+        RadioGroup radioGroup = (RadioGroup) mainActivity.findViewById(R.id.radioGroupClassification);
+        RadioButton radioButton = (RadioButton)mainActivity.findViewById(radioGroup.getCheckedRadioButtonId());
+        strStatusImportance = radioButton.getText().toString();
         return strStatusImportance;
     }
 
