@@ -10,11 +10,15 @@ import com.example.rominakehl.notizbuch.beans.NoteBean;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOError;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class FileService extends Service {
+
     //private OutputStreamWriter out = null;
 
     //private InputStreamReader inputStreamReader = null;
@@ -22,6 +26,7 @@ public class FileService extends Service {
     //private BufferedReader in = null;
 
     //Brücke zur Aktivity
+    private final IBinder binderFileService = new FileServiceBinder();
 
     public class FileServiceBinder extends Binder
     {
@@ -30,7 +35,6 @@ public class FileService extends Service {
         }
     }
 
-    IBinder binderFileService = new FileServiceBinder();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -43,5 +47,9 @@ public class FileService extends Service {
 
     public ArrayList<NoteBean> loadAllFilesFromDevice(){
         return new ArrayList<NoteBean>();
+    }
+
+    public void saveAFile(NoteBean noteBean, FileOutputStream fileOutputStream) throws IOException{
+
     }
 }

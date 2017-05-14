@@ -54,7 +54,9 @@ public class MainActivityOnClickListener implements View.OnClickListener {
                 break;
 
             case R.id.cmdSave:
-                addNote();
+                if (mainActivity.mBound) {
+                    addNote();
+                }
                 break;
         }
     }

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Service
     private static FileService fileService = null;
+    public boolean mBound = false;
 
     private ServiceConnection connection = new ServiceConnection() {
 
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             FileService.FileServiceBinder binder = (FileService.FileServiceBinder) service;
 
             fileService = binder.getFileService();
+            mBound = true;
 
             try
             {
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             fileService = null;
+            mBound = false;
         }
 
     };
@@ -107,19 +110,24 @@ public class MainActivity extends AppCompatActivity {
         cmdSave.setOnClickListener(mainAcitivityOnClickListener);
 
 
+
     }
 
     @Override
+    protected void onStart(){
+        super.onStart();
+        bindConnectionAndStartFileService();
+
+    }
+    @Override
     protected void onResume(){
         super.onResume();
-        bindConnectionAndStartFileService();
 
     }
 
     @Override
     protected void onPause(){
         super.onPause();
-        unbindConnectionAndKillFileService();
     }
 
     @Override
